@@ -25,8 +25,8 @@ RUN pip install --no-cache-dir -r requirements.txt
 # Copy the rest of the code
 COPY . .
 
-# Expose port
-EXPOSE 5001
+# Railway assigns PORT dynamically
+EXPOSE 8080
 
-# Start the app
-CMD ["gunicorn", "-w", "1", "-b", "0.0.0.0:5001", "app:app"]
+CMD gunicorn app:app --workers 1 --threads 2 --timeout 120 --bind 0.0.0.0:$PORT
+
