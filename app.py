@@ -185,6 +185,14 @@ def predict_disease(image_bytes, crop_name):
 # =============================
 # ROUTES
 # =============================
+@app.route("/")
+def health():
+    return {
+        "status": "Agro ML API running",
+        "model": "crop_disease_model",
+        "classes": 50
+    }
+
 
 @app.route('/health', methods=['GET'])
 def health():
